@@ -48,6 +48,7 @@ obj/*
 *.save
 *.gz
 *.fits
+*.json
 version
-include/ExpRatioEvaluator.h
-src/ExpRatioEvaluator.cpp
+
+
