@@ -1,0 +1,2 @@
+telescopesNumber,i,ql,1,,,"Input number of telescopes source"
+eventsNumber,i,ql,1,,,"Input number of events source to simulate"
