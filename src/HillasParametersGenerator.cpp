@@ -14,6 +14,10 @@ double HillasParametersGenerator::randomNumberGenarator() {
 
   normal_distribution<double> distribution (5.0,2.0);
 
+  return distribution(generator);;
+
+
+  /* before modify
   double r = distribution(generator);
 
   if ( r < 2 ) {
@@ -23,6 +27,7 @@ double HillasParametersGenerator::randomNumberGenarator() {
     //cout << "r: " << r << endl;
     return r;
   }
+  */
 
 
 

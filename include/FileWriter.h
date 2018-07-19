@@ -22,7 +22,9 @@ class FileWriter
 {
     public:
       static void write2File(string outputFileName,string input);
+      static void write2JSONFile(string outputFileName,string input);
 	    static void write2FileAppend(string outputFileName,string input);
+      static void write2JSONFileAppend(string outputFileName,string input);
       static string convertToString(int number);
       static string convertToString(float number);
       static string convertToString(double number);

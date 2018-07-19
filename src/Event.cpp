@@ -14,12 +14,63 @@ Event::Event(int _id_event, int _id_telescope) {
   lenght = hillas.randomNumberGenarator();
   widht = hillas.randomNumberGenarator();
 
-  nameFile = "dl2Evt";
+  nameFile = "dl2MTEvt";
+
   nameFile += FileWriter::convertToString(id_event);
+
+  nameFile.append(".json");
+
+  //FileWriter::write2File(nameFile,eventData);
+  /*PrintfInFileMultipleTel();
+  eventData = "]";
+  FileWriter::write2FileAppend(nameFile,eventData);*/
+
+}
+
+Event::Event(int _id_event) {
+
+  id_event = _id_event;
+  HillasParametersGenerator hillas;
+  size = hillas.randomNumberGenarator();
+  centroid.x = hillas.randomNumberGenarator();
+  centroid.y = hillas.randomNumberGenarator();
+  mainAxis = hillas.randomNumberGenarator();
+  lenght = hillas.randomNumberGenarator();
+  widht = hillas.randomNumberGenarator();
+
+  nameFile = "dl2STEvt";
+
+  nameFile += FileWriter::convertToString(id_event);
+
   nameFile.append(".json");
 
 
-  FileWriter::write2File(nameFile,eventData);
+
+  //FileWriter::write2File(nameFile,eventData);
+
+}
+
+Event::~Event() {
+  // ditruttore
+}
+
+string Event::toJSONObj() {
+
+  stringstream obj;
+
+  obj << "{" << "\"id_evt\":" << id_event << ",\"id_tel\":" << id_telescope<< ",\"size\":"<< size <<",\"X\":"<< centroid.x <<",\"Y\":"<<centroid.y<<",\"mAxs\":"<<mainAxis<<",\"lngt\":"<<lenght<<",\"wdt\":"<<widht<<"},";
+  string obj2 = obj.str();
+
+  return obj2;
+}
+
+string Event::toJSONArr(string obj) {
+  string arr = "[";
+
+  arr. append(obj);
+  arr.append("]");
+
+  cout << arr << endl;
 }
 
 void Event::PrintInConsole() {
@@ -42,26 +93,82 @@ void Event::PrintInConsole() {
 
 }
 
-void Event::PrintfInFile() {
+void Event::PrintfInFileSingleTel() {
 
-  eventData = "{ \"id_event\" : ";
+  eventData += "{\"id_evt\":";
 
-  eventData += FileWriter::convertToString(id_event)+ " , \"id_telescope\" : ";
+  eventData += FileWriter::convertToString(id_event)+ ",\"size\":";
 
-  eventData += FileWriter::convertToString(id_telescope)+" , \"size\" : ";
+  eventData += FileWriter::convertToString(size)+ ",\"cX\":";
 
-  eventData += FileWriter::convertToString(size)+ " , \"centroidX\" : ";
+  eventData += FileWriter::convertToString(centroid.x)+ ",\"cY\":";
 
-  eventData += FileWriter::convertToString(centroid.x)+ " , \"centroidY\" : ";
+  eventData += FileWriter::convertToString(centroid.y)+ ",\"mAxs\":";
 
-  eventData += FileWriter::convertToString(centroid.y)+ " , \"mainAxis\" : ";
+  eventData += FileWriter::convertToString(mainAxis)+ ",\"lngt\":";
 
-  eventData += FileWriter::convertToString(mainAxis)+ " , \"lenght\" : ";
+  eventData += FileWriter::convertToString(lenght)+ ",\"wdt\":";
 
-  eventData += FileWriter::convertToString(lenght)+ " , \"widht\" : ";
+  eventData += FileWriter::convertToString(widht) + "}";
 
-  eventData += FileWriter::convertToString(widht) + " }\n";
-  
+  eventData += "\n";
+
   FileWriter::write2FileAppend(nameFile,eventData);
 
 }
+
+
+void Event::PrintfInFileMultipleTel() {
+
+  eventData = "{\"id_evt\":";
+
+  eventData += FileWriter::convertToString(id_event)+ ",\"id_tel\":";
+
+  eventData += FileWriter::convertToString(id_telescope)+",\"size\":";
+
+  eventData += FileWriter::convertToString(size)+ ",\"cX\":";
+
+  eventData += FileWriter::convertToString(centroid.x)+ ",\"cY\":";
+
+  eventData += FileWriter::convertToString(centroid.y)+ ",\"mAxs\":";
+
+  eventData += FileWriter::convertToString(mainAxis)+ ",\"lngt\":";
+
+  eventData += FileWriter::convertToString(lenght)+ ",\"wdt\":";
+
+  eventData += FileWriter::convertToString(widht) + "},";
+
+  //eventDataM += "]\n";
+
+  FileWriter::write2FileAppend(nameFile,eventData);
+
+}
+//cout << obj3 << endl;
+
+/*obj.append("\"id_evt\":");
+obj.append(to_string(id_event));
+
+obj.append(",\"id_tel\":");
+obj.append(to_string(id_telescope));
+
+obj.append(",\"size\":");
+obj.append(to_string(size));
+
+obj.append(",\"X\":");
+obj.append(to_string(centroid.x));
+
+obj.append(",\"Y\":");
+obj.append(to_string(centroid.y));
+
+obj.append(",\"mAxs\":");
+obj.append(to_string(mainAxis));
+
+obj.append(",\"lngt\":");
+obj.append(to_string(lenght));
+
+obj.append(",\"wdt\":");
+obj.append(to_string(widht));
+
+obj.append("},");
+
+//cout << obj << endl;*/

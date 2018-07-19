@@ -9,7 +9,7 @@
 using namespace std;
 
 const PilDescription paramsDescr[] = {
-    { PilInt, "telescopesNumber", "Input number of telescopes source" },
+    { PilBool, "singleTelescope", "'Yes' (or 'y')  to simulate only one telescope, 'No' (or 'n') to simulate more than one" },
     { PilInt, "eventsNumber", "Input number of events source to simulate" },
     { PilNone, "", "" }
 };
@@ -35,35 +35,72 @@ int main(int argc, char *argv[])
     if (!params.Load(argc, argv))
         return EXIT_FAILURE;
 
-	int telescopesNumber = params["telescopesNumber"];
+	bool singleTelescope = params["singleTelescope"];
   int eventsNumber = params["eventsNumber"];
 
   // PRINT INPUT PARAMETERS -------------------------------------
   cout << "\n" << endl;
   params.Print();
 
+  vector<Event> eventi;
 
-	vector<Event> eventi;
-	Event *evento;
+  Event *evento;
 
-	for( int i = 0; i < eventsNumber; i++ ) {
+  string jsonObj[eventsNumber];
 
-		for (int j = 0; j < telescopesNumber; j++) {
+  if ( singleTelescope == true ) {
 
-			evento = new Event(i,j);
+    for( int i = 0; i < eventsNumber; i++ ) {
 
-			eventi.push_back(*evento);
+        evento = new Event(i,0);
 
-		}
+        jsonObj[i].append(evento->toJSONObj());
 
-	}
+        eventi.push_back(*evento);
+      }
 
 
-	for( vector<Event> ::iterator it = eventi.begin(); it != eventi.end(); ++it) {
-		//it -> Event::PrintInConsole();
+  } else {
 
-	  it -> Event::PrintfInFile();
-	}
+    HillasParametersGenerator hillas;
+
+    for( int i = 0; i < eventsNumber; i++ ) {
+
+      int telescopesNumber = 0;
+
+      while (telescopesNumber < 2 || telescopesNumber > 10) {
+        telescopesNumber = abs(hillas.randomNumberGenarator());
+        //cout << "Telescope number: " << telescopesNumber << endl;
+      }
+      //getchar();
+
+  		for (int j = 0; j < telescopesNumber; j++) {
+
+        evento = new Event(i,j);
+
+        jsonObj[i].append(evento->toJSONObj());
+
+      	eventi.push_back(*evento);
+
+  		}
+
+    }
+
+  }
+
+for( int i = 0; i < eventsNumber; i++ ) {
+    string arrJson ="[";
+    string nArrJson = jsonObj[i].substr(0, jsonObj[i].size()-1);
+    arrJson.append(nArrJson);
+    arrJson.append("]");
+    string nameId = jsonObj[i].substr(10, 1);
+    string name ="dl2";
+    name.append(nameId);
+    name.append(".json");
+    //cout << arrJson << endl;
+    FileWriter::write2File(name,arrJson);
+
+  }
 
   cout << endString << endl;
   return 0;
