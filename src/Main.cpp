@@ -8,11 +8,6 @@
 
 using namespace std;
 
-const PilDescription paramsDescr[] = {
-    { PilBool, "singleTelescope", "'Yes' (or 'y')  to simulate only one telescope, 'No' (or 'n') to simulate more than one" },
-    { PilInt, "eventsNumber", "Input number of events source to simulate" },
-    { PilNone, "", "" }
-};
 
 const char* startString = {
 "################################################################\n"
@@ -31,16 +26,13 @@ int main(int argc, char *argv[])
 
 	cout << startString << endl;
 
-	PilParams params(paramsDescr);
-    if (!params.Load(argc, argv))
-        return EXIT_FAILURE;
-
-	bool singleTelescope = params["singleTelescope"];
-  int eventsNumber = params["eventsNumber"];
+  int randomNumTelescope = atoi(argv[1]);
+  int eventsNumber = atoi(argv[2]);
 
   // PRINT INPUT PARAMETERS -------------------------------------
   cout << "\n" << endl;
-  params.Print();
+  cout << "randomNumTelescope: " << randomNumTelescope << endl;
+  cout << "eventsNumber: " << eventsNumber << endl;
 
   vector<Event> eventi;
 
@@ -48,7 +40,7 @@ int main(int argc, char *argv[])
 
   string jsonObj[eventsNumber];
 
-  if ( singleTelescope == true ) {
+  if ( randomNumTelescope == 0 ) {
 
     for( int i = 0; i < eventsNumber; i++ ) {
 

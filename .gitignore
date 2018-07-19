@@ -34,6 +34,7 @@
 # Folders
 bin/*
 obj/*
+conf/*
 
 
 # Files
@@ -50,5 +51,3 @@ obj/*
 *.fits
 *.json
 version
-
-
