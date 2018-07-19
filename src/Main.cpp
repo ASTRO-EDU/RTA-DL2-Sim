@@ -1,7 +1,6 @@
 #include<iostream>
 
 
-#include <PilParams.h>
 #include "Event.h"
 #include "FileWriter.h"
 
