@@ -1,22 +1,17 @@
 /*
  ==========================================================================
  RTA-DL2-Sim C++ https://github.com/ASTRO-EDU/RTA-DL2-Sim
-
  Copyright (C) 2018 Giancarlo Zollino
-
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation, either version 3 of the License, or
  (at your option) any later version.
-
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
-
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
  ==========================================================================
 */
 
@@ -46,6 +41,12 @@ int main(int argc, char *argv[])
 
 	cout << startString << endl;
 
+	if(argc < 3) {
+		cout << "Insert 2 input parameters:\n		1 - randomNumTelescope: insert '1' to simulate random number of telescopes, '0' to simulate only one.\n		2 - eventsNumber: insert number of events to simulate." << endl;
+		cout << endString << endl;
+		return 0;
+	}
+
   int randomNumTelescope = atoi(argv[1]);
   int eventsNumber = atoi(argv[2]);
 
@@ -53,8 +54,6 @@ int main(int argc, char *argv[])
   cout << "\n" << endl;
   cout << "randomNumTelescope: " << randomNumTelescope << endl;
   cout << "eventsNumber: " << eventsNumber << endl;
-
-  vector<EventDL2> eventi;
 
   EventDL2 *evento;
 
@@ -68,7 +67,6 @@ int main(int argc, char *argv[])
 
         jsonObj[i].append(evento->toJSONObj());
 
-        eventi.push_back(*evento);
       }
 
 
@@ -91,8 +89,6 @@ int main(int argc, char *argv[])
         evento = new EventDL2(i,j);
 
         jsonObj[i].append(evento->toJSONObj());
-
-      	eventi.push_back(*evento);
 
   		}
 

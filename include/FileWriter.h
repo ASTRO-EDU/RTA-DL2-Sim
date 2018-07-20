@@ -30,7 +30,7 @@ class FileWriter
       static string convertToString(double number);
 
     private:
-      FileWriter();
+      FileWriter(); //13:30
 };
 
 #endif // FILEWRITER_H

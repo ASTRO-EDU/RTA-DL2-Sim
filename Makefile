@@ -1,23 +1,23 @@
 #
-#==========================================================================
-#RTA-DL2-Sim C++ https://github.com/ASTRO-EDU/RTA-DL2-Sim
-
-Copyright (C) 2018 Giancarlo Zollino
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-==========================================================================
+# ==========================================================================
+# RTA-DL2-Sim C++ https://github.com/ASTRO-EDU/RTA-DL2-Sim
+#
+# Copyright (C) 2018 Giancarlo Zollino
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# ==========================================================================
 #
 
 SHELL = /bin/sh
@@ -94,23 +94,3 @@ makeobjdir:
 clean:
 	$(DEL_FILE) $(OBJECTS_DIR)/*.o
 	$(DEL_FILE) $(EXE_DESTDIR)/*
-
-
-
-#install: compile the program and copy the executables, libraries,
-#and so on to the file names where they should reside for actual use.
-#install: all
-
-	# For exe installation
-#	test -d $(bindir) || mkdir -p $(bindir)
-#	$(COPY_FILE) $(EXE_DESTDIR)/* $(bindir)
-
-	# For conf files installation
-#	test -d $(datadir) || mkdir -p $(datadir)
-#	$(COPY_FILE) $(CONF_DIR)/* $(datadir)/$(CONF_DEST_DIR)
-
-
-#uninstall: delete all the installed files--the copies that the `install' target creates.
-#uninstall:
-	# For exe uninstall
-#	$(DEL_FILE) $(bindir)/$(EXE_NAME)
