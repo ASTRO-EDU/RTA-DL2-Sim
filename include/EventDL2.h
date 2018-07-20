@@ -20,22 +20,34 @@
  ==========================================================================
 */
 
-#include "HillasParametersGenerator.h"
+#include<iostream>
+#include <sstream>
+#include <iomanip>
+#include"HillasParametersGenerator.h"
+//#include"FileWriter.h"
 
 using namespace std;
 
-HillasParametersGenerator::HillasParametersGenerator()
-{
+class EventDL2 {
+public:
+  EventDL2(int id_event);
+  EventDL2(int id_event, int id_telescope);
+  ~EventDL2();
+  string toJSONObj();
+  string toJSONArr(string obj);
 
-}
+  struct point {
+    double x;
+    double y;
+  };
 
-double HillasParametersGenerator::randomNumberGenarator() {
+  double id_event;
+  double id_telescope;
+  double size;
+  point centroid;
+  double mainAxis;
+  double lenght;
+  double widht;
+  string jsonObj;
 
-  unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-  default_random_engine generator (seed);
-
-  normal_distribution<double> distribution (5.0,2.0);
-
-  return distribution(generator);;
-
-}
+};

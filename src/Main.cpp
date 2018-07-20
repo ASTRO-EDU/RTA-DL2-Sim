@@ -1,7 +1,28 @@
+/*
+ ==========================================================================
+ RTA-DL2-Sim C++ https://github.com/ASTRO-EDU/RTA-DL2-Sim
+
+ Copyright (C) 2018 Giancarlo Zollino
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+ ==========================================================================
+*/
+
 #include<iostream>
 
-
-#include "Event.h"
+#include "EventDL2.h"
 #include "FileWriter.h"
 
 
@@ -33,9 +54,9 @@ int main(int argc, char *argv[])
   cout << "randomNumTelescope: " << randomNumTelescope << endl;
   cout << "eventsNumber: " << eventsNumber << endl;
 
-  vector<Event> eventi;
+  vector<EventDL2> eventi;
 
-  Event *evento;
+  EventDL2 *evento;
 
   string jsonObj[eventsNumber];
 
@@ -43,7 +64,7 @@ int main(int argc, char *argv[])
 
     for( int i = 0; i < eventsNumber; i++ ) {
 
-        evento = new Event(i,0);
+        evento = new EventDL2(i,0);
 
         jsonObj[i].append(evento->toJSONObj());
 
@@ -67,7 +88,7 @@ int main(int argc, char *argv[])
 
   		for (int j = 0; j < telescopesNumber; j++) {
 
-        evento = new Event(i,j);
+        evento = new EventDL2(i,j);
 
         jsonObj[i].append(evento->toJSONObj());
 
@@ -84,11 +105,10 @@ for( int i = 0; i < eventsNumber; i++ ) {
     string nArrJson = jsonObj[i].substr(0, jsonObj[i].size()-1);
     arrJson.append(nArrJson);
     arrJson.append("]");
-    string nameId = jsonObj[i].substr(10, 1);
-    string name ="dl2";
-    name.append(nameId);
+    string name ="dl2Evt";
+    name.append(to_string(i));
     name.append(".json");
-    //cout << arrJson << endl;
+
     FileWriter::write2File(name,arrJson);
 
   }

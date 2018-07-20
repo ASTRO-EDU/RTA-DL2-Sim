@@ -1,2 +1,0 @@
-singleTelescope,b,ql,yes,,,"Type 'Yes' (or 'y')  to simulate only one telescope, 'No' (or 'n') to simulate more than one"
-eventsNumber,i,ql,1,,,"Input number of events source to simulate"
