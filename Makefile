@@ -39,7 +39,16 @@ LIB_DESTDIR = lib
 
 CXX = g++
 
-CXXFLAGS = -std=c++11 -g -O2 -pipe -I $(INCLUDE_DIR)
+CXXFLAGS = -std=c++11 -O2 -I $(INCLUDE_DIR)
+
+ifeq ($(DEBUG),1)
+	CXXFLAGS += -DDEBUG
+endif
+
+ifeq ($(MULTITHREAD),1)
+	CXXFLAGS += -DMULTITHREAD
+endif
+
 
 LIBS += -L lib/ -lRTA
 

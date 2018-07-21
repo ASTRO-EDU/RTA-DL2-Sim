@@ -26,3 +26,8 @@ Dove:
 Dove:
   0: indica che si intende simulare un numero casuale di telescopi;
   2: indica il numero di eventi che si intende simulare;
+
+## Compilazione
+* export DEBUG=1  (Se si vuole compilare il modalità DEBUG)
+* export MULTITHREAD=1  (Se si vuole compilare con supporto multithreading)
+* make

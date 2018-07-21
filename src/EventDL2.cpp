@@ -30,8 +30,8 @@ EventDL2::EventDL2(int _id_event, int _id_telescope) {
   id_telescope = _id_telescope;
   HillasParametersGenerator hillas;
   size = hillas.randomNumberGenarator();
-  centroid.x = hillas.randomNumberGenarator();
-  centroid.y = hillas.randomNumberGenarator();
+  centerX = hillas.randomNumberGenarator();
+  centerY = hillas.randomNumberGenarator();
   mainAxis = hillas.randomNumberGenarator();
   lenght = hillas.randomNumberGenarator();
   widht = hillas.randomNumberGenarator();
@@ -43,8 +43,8 @@ EventDL2::EventDL2(int _id_event) {
   id_event = _id_event;
   HillasParametersGenerator hillas;
   size = hillas.randomNumberGenarator();
-  centroid.x = hillas.randomNumberGenarator();
-  centroid.y = hillas.randomNumberGenarator();
+  centerX = hillas.randomNumberGenarator();
+  centerY = hillas.randomNumberGenarator();
   mainAxis = hillas.randomNumberGenarator();
   lenght = hillas.randomNumberGenarator();
   widht = hillas.randomNumberGenarator();
@@ -59,7 +59,7 @@ string EventDL2::toJSONObj() {
 
   stringstream obj;
 
-  obj << "{" << "\"id_evt\":" << id_event << ",\"id_tel\":" << id_telescope<< ",\"size\":"<< size <<",\"X\":"<< centroid.x <<",\"Y\":"<<centroid.y<<",\"mAxs\":"<<mainAxis<<",\"lngt\":"<<lenght<<",\"wdt\":"<<widht<<"},";
+  obj << "{" << "\"id_evt\":" << id_event << ",\"id_tel\":" << id_telescope<< ",\"size\":"<< size <<",\"X\":"<< centerX <<",\"Y\":"<< centerY <<",\"mAxs\":"<<mainAxis<<",\"lngt\":"<<lenght<<",\"wdt\":"<<widht<<"},";
   string obj2 = obj.str();
 
   return obj2;

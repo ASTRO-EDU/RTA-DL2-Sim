@@ -24,27 +24,29 @@
 #include <sstream>
 #include <iomanip>
 #include"HillasParametersGenerator.h"
-//#include"FileWriter.h"
 
-using namespace std;
+//using namespace std;
+using std::string;
+using std::stringstream;
+
 
 class EventDL2 {
 public:
   EventDL2(int id_event);
   EventDL2(int id_event, int id_telescope);
+  EventDL2(int _id_event, double _id_telescope, double _size, double x, double y, double _mainAxis, double _lenght, double _widht)
+      :  id_event(_id_event), id_telescope(_id_telescope), size(_size), centerX(x), centerY(y), mainAxis(_mainAxis), lenght(_lenght), widht(_widht) { }
+
   ~EventDL2();
   string toJSONObj();
-  string toJSONArr(string obj);
+//  string toJSONArr(string obj);
 
-  struct point {
-    double x;
-    double y;
-  };
 
   double id_event;
   double id_telescope;
   double size;
-  point centroid;
+  double centerX;
+  double centerY;
   double mainAxis;
   double lenght;
   double widht;
