@@ -29,7 +29,7 @@ endif
 SYSTEM= $(shell gcc -dumpmachine)
 
 # Applications
-AG_EXE = dl2Sim
+EXE = dl2Sim
 
 ####### 2) Directories for the compiler
 OBJECTS_DIR = obj
@@ -40,10 +40,10 @@ EXE_DESTDIR  = bin
 LIB_DESTDIR = lib
 
 ####### 3) Compiler, tools and options
-RTALIB = $(RTA)
+
 CXX = g++
 
-CXXFLAGS = -std=c++11 -O2 -I $(INCLUDE_DIR) $(RTA)/include
+CXXFLAGS = -std=c++11 -O2 -I $(INCLUDE_DIR) $(RTALIB)
 
 ifeq ($(DEBUG),1)
 	CXXFLAGS += -DDEBUG
@@ -54,7 +54,7 @@ ifeq ($(MULTITHREAD),1)
 endif
 
 
-LIBS += -L $(RTA)/lib/ -lRTA
+LIBS += -L $(RTALIB)/lib/ -lRTA
 
 
 AR       = ar cqs
@@ -96,7 +96,7 @@ all: exe
 
 exe: makeobjdir $(OBJECTS)
 	test -d $(EXE_DESTDIR) || mkdir -p $(EXE_DESTDIR)
-	$(CXX) $(CPPFLAGS) $(ALL_CFLAGS) -o $(EXE_DESTDIR)/$(AG_EXE) $(OBJECTS_DIR)/*.o $(LIBS)
+	$(CXX) $(CPPFLAGS) $(ALL_CFLAGS) -o $(EXE_DESTDIR)/$(EXE) $(OBJECTS_DIR)/*.o $(LIBS)
 
 makeobjdir:
 	test -d $(OBJECTS_DIR) || mkdir -p $(OBJECTS_DIR)
