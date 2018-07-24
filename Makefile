@@ -21,6 +21,10 @@
 
 SHELL = /bin/sh
 
+ifndef RTALIB
+$(error RTALIB is not set.)
+endif
+
 ####### 1) Project names and system
 SYSTEM= $(shell gcc -dumpmachine)
 
@@ -36,10 +40,10 @@ EXE_DESTDIR  = bin
 LIB_DESTDIR = lib
 
 ####### 3) Compiler, tools and options
-
+RTALIB = $(RTALIB)
 CXX = g++
 
-CXXFLAGS = -std=c++11 -O2 -I $(INCLUDE_DIR)
+CXXFLAGS = -std=c++11 -O2 -I $(INCLUDE_DIR) $(RTALIB)/include
 
 ifeq ($(DEBUG),1)
 	CXXFLAGS += -DDEBUG
@@ -50,7 +54,7 @@ ifeq ($(MULTITHREAD),1)
 endif
 
 
-LIBS += -L lib/ -lRTA
+LIBS += -L $(RTALIB)/lib/ -lRTA
 
 
 AR       = ar cqs
