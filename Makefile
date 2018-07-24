@@ -40,10 +40,10 @@ EXE_DESTDIR  = bin
 LIB_DESTDIR = lib
 
 ####### 3) Compiler, tools and options
-RTALIB = $(RTALIB)
+RTALIB = $(RTA)
 CXX = g++
 
-CXXFLAGS = -std=c++11 -O2 -I $(INCLUDE_DIR) $(RTALIB)/include
+CXXFLAGS = -std=c++11 -O2 -I $(INCLUDE_DIR) $(RTA)/include
 
 ifeq ($(DEBUG),1)
 	CXXFLAGS += -DDEBUG
@@ -54,7 +54,7 @@ ifeq ($(MULTITHREAD),1)
 endif
 
 
-LIBS += -L $(RTALIB)/lib/ -lRTA
+LIBS += -L $(RTA)/lib/ -lRTA
 
 
 AR       = ar cqs
